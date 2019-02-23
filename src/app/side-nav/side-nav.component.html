@@ -1,6 +1,6 @@
   <div class="logo">
   </div>
-    <ul nz-menu style="overflow-y: scroll;height: 100vh !important;" [nzTheme]="'dark'" [nzMode]="'inline'" [nzInlineCollapsed]="isCollapsed">
+    <ul nz-menu style="overflow-y: auto;height: 100vh !important;" [nzTheme]="'dark'" [nzMode]="'inline'" [nzInlineCollapsed]="isCollapsed">
       <ng-container *ngFor="let t of notes | async | search:searchTextObs">
         <li nz-menu-item (click)="onMenuItemClick(t)" [nzSelected]="t.id===id">
           <div class="nav-text">
