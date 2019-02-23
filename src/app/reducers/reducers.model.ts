@@ -9,12 +9,16 @@ export interface InitialState {
     createNew: boolean;
     searchText:string
 }
-const fromLocalStore = JSON.parse(localStorage.getItem('notes'));
-fromLocalStore.map((t)=>{
-    t.timestamp = new Date(t.timestamp);
-});
+let fromLocalStore = JSON.parse(localStorage.getItem('notes'));
+if (fromLocalStore&&fromLocalStore.length>0){
+    fromLocalStore.map((t)=>{
+        t.timestamp = new Date(t.timestamp);
+    });
+} else {
+    fromLocalStore = [];
+}
 export const INITIAL_STATE: InitialState = {
-    notes: (fromLocalStore!==undefined&&fromLocalStore.length>0)?fromLocalStore:[],
+    notes: fromLocalStore,
     editIndex:{
         id:null,
         note_text: '',
