@@ -1,0 +1,7 @@
+textarea {
+  height: calc(100vh - 232px);
+  width: 100%;
+  border: none;
+  resize: none;
+}
+textarea:focus {outline: none; }
