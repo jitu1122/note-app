@@ -6,7 +6,7 @@ export default function rootReducer(state: InitialState, action): InitialState {
         case ADD_NOTES:
             if(!action.note.id){
                 let notes = [];
-                action.note.id = state.notes.length + 1;
+                action.note.id = new Date().getTime();
                 notes.push(action.note);
                 state.notes.map((x)=>{
                     notes.push(x);
@@ -15,6 +15,10 @@ export default function rootReducer(state: InitialState, action): InitialState {
                 state.searchText = '';
                 return Object.assign({}, state, {
                     notes: notes
+                });
+            } else {
+                return Object.assign({}, state, {
+                    notes: state.notes.concat([])
                 });
             }
         case EDIT_NOTE:

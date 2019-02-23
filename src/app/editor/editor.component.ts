@@ -28,9 +28,7 @@ export class EditorComponent implements OnInit,OnChanges {
 
   onTextChange(){
     this.note_data_current.timestamp = new Date();
-    if (!this.note_data_current.id) {
-      this.ngRedux.dispatch({type: ADD_NOTES, note: this.note_data_current});
-    }
+    this.ngRedux.dispatch({type: ADD_NOTES, note: this.note_data_current});
     // this.noted_data.push(this.note_data_current);
     // localStorage.setItem('note',JSON.stringify(this.noted_data));
   }

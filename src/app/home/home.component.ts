@@ -13,11 +13,9 @@ export class HomeComponent implements OnInit,OnDestroy {
   toDelete = null;
   searchText = '';
   isCollapsed = false;
-  newID = null;
   constructor(private ngRedux: NgRedux<any>) {
     this.notes.subscribe((t)=>{
       localStorage.setItem('notes',JSON.stringify(t));
-      this.newID = t.length;
       t.map((x,i)=>{
         if(i===x.length){
           this.ngRedux.dispatch({type: EDIT_NOTE, editIndex: x});
@@ -30,8 +28,6 @@ export class HomeComponent implements OnInit,OnDestroy {
   }
 
   ngOnInit() {
-    let text = localStorage.getItem('notes');
-    console.log(JSON.parse(text))
   }
   onNewClick() {
     this.ngRedux.dispatch({type: ADD_NOTES, note: {
@@ -41,13 +37,11 @@ export class HomeComponent implements OnInit,OnDestroy {
       } });
   }
   onDeleteClick() {
-    console.log(this.toDelete.id);
     this.ngRedux.dispatch({type: DELETE_NOTES, id: this.toDelete.id });
   }
   searchNote() {
     this.ngRedux.dispatch({type: SEARCH_NOTE, searchText: this.searchText });
   }
   ngOnDestroy() {
-    window.alert('destroy')
   }
 }
